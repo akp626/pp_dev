@@ -1,0 +1,48 @@
+
+Description: Initial testing with cloudFormation
+
+Resources:
+  SampleLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      MemorySize: 512
+      Timeout: 300
+      FunctionName: Test_template
+      #Role: arn:aws:iam::120569637414:role/service-role/PP_test-role-ao383oim
+      Role: !GetAtt LambdaRole.Arn
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+            return {"statusCode": 200, "body": "Hello from inline code!"}
+
+
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub App_${AWS::StackName}_event_lambda_role
+      AssumeRolePolicyDocument:
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      #PermissionsBoundary: !Sub arn:aws:iam::${AWS::AccountId}:policy/CE_AppAdminBoundary
+      Policies:
+      - PolicyName: !Sub App_${AWS::StackName}_event_lambda_policy
+        PolicyDocument:
+          Statement: 
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+          Resource:
+          - '*'
+          - Effect: Allow
+            Action:
+            - cloudwatch:PutMetricData
+            Resource: '*'
