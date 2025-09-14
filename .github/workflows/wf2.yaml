@@ -1,4 +1,4 @@
-name: Building first workfloe blockss
+name: Building first workfloe blocks
 
 on:
   push:
