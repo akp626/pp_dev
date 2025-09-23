@@ -1,6 +1,6 @@
 
 name: Expression
-run-name: Expression | Debug- $${{inputs.bebug && 'ONN' || 'OFF'}} 
+run-name: Expression | Debug- ${{inputs.bebug && 'ONN' || 'OFF'}} 
 
 on:
     push:
