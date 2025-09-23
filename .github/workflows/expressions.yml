@@ -1,28 +1,29 @@
-name: Deploy CloudFormation Stack
+
+name: Expression
+run-name: Expression | Debug- $${{inputs.bebug && 'ONN' || 'OFF'}} 
 
 on:
-  push:
-    branches:
-      - pp_dev
+    push:
+    workflow_dispatch:
+        inputs:
+            debug:
+                type: boolean
+                default: false
+
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+    expression:
+        runs-on: ubuntu-latest
+        steps:
+         - name: '[debug] Print start up date'
+           if: ${{inputs.bebug}}
+           run: |
+                echo "Trigger by: $${{github.event_name}}"
+                echo "Branch: $${{github.ref}}"
+                echo "Commit SHA: $${{github.sha}}"
+                echo "Runner OS: $${{runner.os}}"
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v3
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION }}
-
-    - name: Deploy CloudFormation stack
-      run: |
-        aws cloudformation deploy \
-          --template-file basic1.yaml \
-          --stack-name my-stack-from-github \
-          --capabilities CAPABILITY_NAMED_IAM
+         - name: '[debug] Print when trigger from pp_dev'
+           if: ${{inputs.bebug && github.ref == 'ref/headers/pp_dev'}}
+           run: echo "I was trigger from pp_dev"
+  
