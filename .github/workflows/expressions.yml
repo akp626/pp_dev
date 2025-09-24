@@ -19,7 +19,7 @@ jobs:
          - name: '[debug] Print start up date'
            if: ${{inputs.debug}}
            run: |
-                echo "Trigger by: $${{github.event_name}}"
+                echo "Trigger by: ${{github.event_name}}"
                 echo "Branch: ${{github.ref}}"
                 echo "Commit SHA: ${{github.sha}}"
                 echo "Runner OS: ${{runner.os}}"
