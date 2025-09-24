@@ -1,6 +1,6 @@
 
 name: Expression
-run-name: Expression | Debug- ${{inputs.bebug && 'ONN' || 'OFF'}} 
+run-name: Expression | Debug- ${{inputs.debug && 'ON' || 'OFF'}} 
 
 on:
     push:
@@ -8,7 +8,7 @@ on:
         inputs:
             debug:
                 type: boolean
-                default: 'true'
+                default: true
 
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
          - name: '[debug] Print start up date'
-           if: ${{inputs.bebug}}
+           if: ${{inputs.debug}}
            run: |
                 echo "Trigger by: $${{github.event_name}}"
                 echo "Branch: ${{github.ref}}"
@@ -24,6 +24,6 @@ jobs:
                 echo "Runner OS: ${{runner.os}}"
 
          - name: '[debug] Print when trigger from pp_dev'
-           if: ${{inputs.bebug && github.ref == 'ref/headers/pp_dev'}}
+           if: ${{inputs.debug && github.ref == 'ref/headers/pp_dev'}}
            run: echo "I was trigger from pp_dev"
   
