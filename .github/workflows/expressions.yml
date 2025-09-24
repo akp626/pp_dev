@@ -14,8 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: '[debug] Print start up date'
-        if: ${{ github.event.inputs.debug == 'true' }}
+        #if: ${{ github.event.inputs.debug == 'true' }}
         run: |
+          echo "Trigger by: ${{ github }}"
           echo "Trigger by: ${{ github.event_name }}"
           echo "Branch: ${{ github.ref }}"
           echo "Commit SHA: ${{ github.sha }}"
