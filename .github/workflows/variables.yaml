@@ -20,8 +20,12 @@ jobs:
               env:
                 STEP_VAR: 'I am Step Env Variable'
               run: |
-                echo "Step Env var ${{env.STEP_VAR}}"
-                echo "Job Env var ${{env.JOB_VAR}}"
-                echo "Workflow Env var ${{env.WORKFLOW_VAR}}"
-                echo "Workflow Env var ${{env.OVERWRITTEN}}"
+                echo "Step Env var: ${{env.STEP_VAR}}"
+                echo "Job Env var: ${{env.JOB_VAR}}"
+                echo "Workflow Env var: ${{env.WORKFLOW_VAR}}"
+                echo "Workflow Env var: ${{env.OVERWRITTEN}}"
+
+            - name: Access Step variables
+              run: |
+                echo 'Job Env var: ${{ env.JOB_VAR }}'
  
