@@ -16,11 +16,11 @@ jobs:
       - name: '[debug] Print start up date'
         #if: ${{ github.event.inputs.debug == 'true' }}
         run: |
-          echo "Trigger by: ${{ github }}"
-          echo "Trigger by: ${{ github.event_name }}"
-          echo "Branch: ${{ github.ref }}"
-          echo "Commit SHA: ${{ github.sha }}"
-          echo "Runner OS: ${{ runner.os }}"
+          echo "Github ==: ${{ github }}"
+          # echo "Trigger by: ${{ github.event_name }}"
+          # echo "Branch: ${{ github.ref }}"
+          # echo "Commit SHA: ${{ github.sha }}"
+          # echo "Runner OS: ${{ runner.os }}"
 
       - name: '[debug] Print when triggered from pp_dev'
         if: ${{ github.event.inputs.debug == 'true' && github.ref == 'refs/heads/pp_dev' }}
