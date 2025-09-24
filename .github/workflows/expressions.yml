@@ -1,6 +1,7 @@
 
 name: Expression
-run-name: Expression | Debug- ${{inputs.debug==true && 'ON' || 'OFF'}} 
+run-name: Expression | Debug
+#run-name: "Expression | Debug- ${{ inputs.debug == true && 'ON' || 'OFF' }}"
 
 on:
     push:
