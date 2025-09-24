@@ -1,6 +1,6 @@
 
 name: Expression
-run-name: Expression | Debug- ${{inputs.debug && 'ON' || 'OFF'}} 
+run-name: Expression | Debug- ${{inputs.debug=='true' && 'ON' || 'OFF'}} 
 
 on:
     push:
@@ -8,7 +8,7 @@ on:
         inputs:
             debug:
                 type: boolean
-                default: true
+                default: 'true'
 
 
 jobs:
