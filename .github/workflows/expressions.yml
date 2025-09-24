@@ -1,30 +1,26 @@
-
 name: Expression
 run-name: Expression | Debug
-#run-name: "Expression | Debug- ${{ inputs.debug == true && 'ON' || 'OFF' }}"
 
 on:
-    push:
-    workflow_dispatch:
-        inputs:
-            debug:
-                type: boolean
-                default: true
-
+  push:
+  workflow_dispatch:
+    inputs:
+      debug:
+        type: boolean
+        default: true
 
 jobs:
-    expression:
-        runs-on: ubuntu-latest
-        steps:
-         - name: '[debug] Print start up date'
-           if: ${{ github.event.inputs.debug }}
-           run: |
-                echo "Trigger by: ${{github.event_name}}"
-                echo "Branch: ${{github.ref}}"
-                echo "Commit SHA: ${{github.sha}}"
-                echo "Runner OS: ${{runner.os}}"
+  expression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: '[debug] Print start up date'
+        if: ${{ github.event.inputs.debug }}
+        run: |
+          echo "Trigger by: ${{ github.event_name }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Runner OS: ${{ runner.os }}"
 
-         - name: '[debug] Print when trigger from pp_dev'
-           if: ${{ github.event.inputs.debug  && github.ref == 'ref/headers/pp_dev' }}
-           run: echo "I was trigger from pp_dev"
-  
+      - name: '[debug] Print when triggered from pp_dev'
+        if: ${{ github.event.inputs.debug && github.ref == 'refs/heads/pp_dev' }}
+        run: echo "I was triggered from pp_dev"
