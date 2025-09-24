@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: '[debug] Print start up date'
-        if: ${{ github.event.inputs.debug }}
+        if: ${{ github.event.inputs.debug == 'true' }}
         run: |
           echo "Trigger by: ${{ github.event_name }}"
           echo "Branch: ${{ github.ref }}"
@@ -22,5 +22,5 @@ jobs:
           echo "Runner OS: ${{ runner.os }}"
 
       - name: '[debug] Print when triggered from pp_dev'
-        if: ${{ github.event.inputs.debug && github.ref == 'refs/heads/pp_dev' }}
+        if: ${{ github.event.inputs.debug == 'true' && github.ref == 'refs/heads/pp_dev' }}
         run: echo "I was triggered from pp_dev"
