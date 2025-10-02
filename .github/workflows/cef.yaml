@@ -10,18 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: deploy in dev
-        run: echo 'I'm in dev'
+        run: echo 'Im in dev'
   
   uat:
     runs-on: ubuntu-latest
     steps:
-      - name: deploy in dev
-        run: echo 'I'm in UAT'
+      - name: deploy in UAT
+        run: echo 'Im in UAT'
 
   prod:
     runs-on: ubuntu-latest
     steps:
       - name: deploy in PROD
-        run: echo 'I'm in PROD'
+        run: echo 'Im in PROD'
 
 
