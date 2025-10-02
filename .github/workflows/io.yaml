@@ -2,6 +2,7 @@ name: Controlling execution flow
 description: Controlling execution flows
 
 on:
+    push:
     workflow_dispatch:
       inputs:
         dry-run:
