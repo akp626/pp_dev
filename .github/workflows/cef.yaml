@@ -1,0 +1,27 @@
+name: Controlling execution flow
+description: Controlling execution flows
+
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy in dev
+        run: echo 'I'm in dev'
+  
+  uat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy in dev
+        run: echo 'I'm in UAT'
+
+  prod:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy in PROD
+        run: echo 'I'm in PROD'
+
+
