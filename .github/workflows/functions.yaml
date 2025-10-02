@@ -1,0 +1,27 @@
+name: functions
+description: Exploring functions
+
+on:
+    push:
+    workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failing Step
+        run: exit 1
+      - name: I will be skipped
+        if: ${{ success() }}
+        run: echo 'I will be print if Faling step succeeded
+      - name: I will execute in failure
+        if: ${{ failure() }}
+        run: echo 'I will execute even if Failing step Failed'
+      - name: I will execute in workflow cancelled
+        if: ${{ cancelled() }}
+        run: echo 'I will execute even if WF cancel'
+      - name: I will execute in always
+        if: ${{ always() }}
+        run: echo 'I will always execute even if WF cancel or failed in any step'
+
