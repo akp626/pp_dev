@@ -1,0 +1,21 @@
+name: Outputs
+description: Explore outputs
+
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+
+  dev-bulid:
+    runs-on: ubuntu-latest
+    steps:
+      - name: bulid tenant
+        id: build
+        run: echo 'building dev tenant=dev >> $GITHUB_OUTPUT'
+      - name: print tenant
+        run: echo 'print tenant:${{ steps.build.outputs.tenant }}'
+
+
+
+
