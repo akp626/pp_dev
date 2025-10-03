@@ -16,7 +16,7 @@ jobs:
         id: build
         run: echo 'tenant=dev' >> $GITHUB_OUTPUT
       - name: print tenant
-        run: echo 'print tenant:${{ steps.build.outputs.tenant }}'
+        run: echo 'print tenant:${{ steps.build.outputs.tenant-env }}'
 
   dev-deploy:
     runs-on: ubuntu-latest
