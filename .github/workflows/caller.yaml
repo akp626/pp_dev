@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    uses: ./.github/workflows/reusable.yaml
+    uses: .github/workflows/reusable.yaml
     with:
         target-directory: dummy-dir
     
