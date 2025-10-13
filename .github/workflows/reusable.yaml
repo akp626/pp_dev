@@ -1,27 +1,33 @@
-name: Custom action
-description: Use custom actions
+name: Reusable workflow
+description: Define reusable workflow
 
 on:
-    workflow_dispatch:
+  workflow_call:
+    inputs:
+      target-directory:
+        type: string
+        required: true
 
+    outputs:
+      build_status:
+        description: "Build status from deploy job"
+        value: ${{ jobs.deploy.outputs.build_status }}
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    outputs:
+      build_status: ${{ steps.build.outputs.build_status }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node and NPM Dependencies
-        uses: ./.github/actions/custon-actions
-        with:
-          nde-version: 20.x
-          working-dir: custom-actions/app
-      - name: Test
-        run: npm run test
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Build
-        run: npm run build
-        working-directory: custom-actions/app
+        id: build
+        run: |
+          echo "Building using directory: ${{ inputs.target-directory }}"
+          echo "build_status=success" >> $GITHUB_OUTPUT
 
-
-
-
+      - name: Deploy
+        run: |
+          echo 'Deploying build artifact...'
