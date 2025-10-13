@@ -9,7 +9,6 @@ jobs:
     uses: ./.github/workflows/reusable.yaml
     with:
         target-directory: dummy-dir
-        version: 20.x
     
   print-outputs:
     runs-on: ubuntu-latest
