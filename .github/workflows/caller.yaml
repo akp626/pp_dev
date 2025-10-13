@@ -1,5 +1,5 @@
 name: Caller workflow
-description: Define caller workflow
+description: Define caller workflows
 
 on:
   workflow_dispatch:
